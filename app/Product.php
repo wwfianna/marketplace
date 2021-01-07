@@ -10,7 +10,7 @@ class Product extends Model
 
     public function store()
     {
-        $this->belongsTo(\App\Store::class);
+        return $this->belongsTo(\App\Store::class);
     }
 
     public function categories()
