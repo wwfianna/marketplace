@@ -85,23 +85,28 @@ Route::get('/model', function () {
 //        'slug' => 'notebooks'
 //    ]);
 
-    $product = \App\Product::find(40);
 //    dd($product->categories()->attach([1]));
 //    dd($product->categories()->sync([1, 2]));
-    dd($product->categories()->sync([2]));
+
 //    return $product;
 
 //    return User::all();
+    $product = \App\Product::find(40);
+    dd($product->categories()->sync([2]));
 });
 
 
-Route::get('/admin/stores', 'Admin\\StoreController@index');
-Route::get('/admin/stores/create', 'Admin\\StoreController@create');
-Route::post('/admin/stores/store', 'Admin\\StoreController@store');
+Route::prefix('admin')->name('admin')->namespace('Admin')->group(function () {
 
+    Route::prefix('stores')->name('.stores')->group(function () {
 
-//Route::post
-//Route::put
-//Route::patch
-//Route::delete
-//Route::options
+        Route::get('/', 'StoreController@index')->name('.index');
+        Route::get('/create', 'StoreController@create')->name('.create');
+        Route::post('/store', 'StoreController@store')->name('.store');
+        Route::get('/{store}/edit', 'StoreController@edit')->name('.edit');
+        Route::post('/update/{store}', 'StoreController@update')->name('.update');
+        Route::get('/destroy/{store}', 'StoreController@destroy')->name('.destroy');
+
+    });
+
+});
