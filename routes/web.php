@@ -15,7 +15,7 @@ use App\User;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/model', function () {
 //    $products = Product::all();
@@ -95,8 +95,9 @@ Route::get('/model', function () {
     dd($product->categories()->sync([2]));
 });
 
+Route::group(['middleware' => 'auth'], function () {
 
-Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
 
 //    Route::prefix('stores')->name('stores.')->group(function () {
 //
@@ -109,7 +110,13 @@ Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
 //
 //    });
 
-    Route::resource('products', 'ProductController');
-    Route::resource('stores', 'StoreController');
+        Route::resource('products', 'ProductController');
+        Route::resource('stores', 'StoreController');
+
+    });
 
 });
+
+Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
