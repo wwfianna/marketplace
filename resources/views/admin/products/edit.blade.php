@@ -7,28 +7,52 @@
         @method('PUT')
 
         <div class="form-group">
-            <label>Nome Produto</label>
-            <input type="text" name="name" class="form-control" value="{{$product->name}}">
+            <label for="name">Nome Produto</label>
+            <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror"
+                   value="{{$product->name}}">
+            @error('name')
+            <div id=" validationServer03Feedback" class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label>Descrição</label>
-            <input type="text" name="description" class="form-control" value="{{$product->description}}">
+            <label for="description">Descrição</label>
+            <input type="text" id="description" name="description" class="form-control @error('description') is-invalid @enderror"
+                   value="{{$product->description}}">
+            @error('description')
+            <div id=" validationServer03Feedback" class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label>Conteúdo</label>
-            <textarea name="body" id="" cols="30" rows="10" class="form-control">{{$product->body}}</textarea>
+            <label for="body">Conteúdo</label>
+            <textarea id="body" name="body" cols="30" rows="10"
+                      class="form-control @error('body') is-invalid @enderror">{{$product->body}}</textarea>
+            @error('body')
+            <div id=" validationServer03Feedback" class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label>Preço</label>
-            <input type="text" name="price" class="form-control" value="{{$product->price}}">
+            <label for="price">Preço</label>
+            <input type="text" id="price" name="price" class="form-control @error('price') is-invalid @enderror"
+                   value="{{$product->price}}">
+            @error('price')
+            <div id=" validationServer03Feedback" class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
         </div>
 
         <div class="form-group">
-            <label>Slug</label>
-            <input type="text" name="slug" class="form-control" value="{{$product->slug}}">
+            <label for="slug">Slug</label>
+            <input type="text" id="slug" name="slug" class="form-control" value="{{$product->slug}}">
         </div>
 
         <div>
