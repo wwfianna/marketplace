@@ -19,7 +19,8 @@
 
         <div class="form-group">
             <label for="description">Descrição</label>
-            <input type="text" id="description" name="description" class="form-control @error('description') is-invalid @enderror"
+            <input type="text" id="description" name="description"
+                   class="form-control @error('description') is-invalid @enderror"
                    value="{{$product->description}}">
             @error('description')
             <div id=" validationServer03Feedback" class="invalid-feedback">
@@ -48,6 +49,17 @@
                 {{$message}}
             </div>
             @enderror
+        </div>
+
+        <div class="form-group">
+            <label for="categories[]">Categorias</label>
+            <select name="categories[]" id="categories[]" class="form-control" multiple>
+                @foreach($categories as $cat)
+                    <option value="{{$cat->id}}"
+                            @if($product->categories->contains($cat)) selected @endif>{{$cat->name}}
+                    </option>
+                @endforeach
+            </select>
         </div>
 
         <div class="form-group">
