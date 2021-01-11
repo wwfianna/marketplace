@@ -8,6 +8,7 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 use App\Traits\UploadTrait;
+use function PHPUnit\Framework\isNull;
 
 class ProductController extends Controller
 {
@@ -56,6 +57,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->all();
+        $categories = $request->get('categories', null);
 
         $store = auth()->user()->store;
         $product = $store->products()->create($data);
@@ -107,10 +109,14 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
+        $categories = $request->get(´categories, null);
 
         $product = $this->product->find($id);
         $product->update($data);
-        $product->categories()->sync($data['categories']);
+
+        if (!is_null($categories)) {
+            $product->categories()->sync($categories);
+        }
 
         if ($request->hasFile('image')) {
             $images = $this->imgUpload($request->file('image'), 'image');

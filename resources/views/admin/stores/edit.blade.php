@@ -51,7 +51,7 @@
         </div>
 
         <div class="form-group">
-            <img src="{{asset('storage/'.$store->logo)}}" alt="">
+            <img src="{{asset('storage/'.$store->logo)}}" alt="" class="img-fluid img-thumbnail">
             <label for="logo[]">Imagens</label>
             <input type="file" name="logo" id="logo" class="form-control @error('logo') is-invalid @enderror">
             @error('logo')
@@ -63,7 +63,7 @@
 
         <div class="form-group">
             <label for="slug">Slug</label>
-            <input type="text" id="slug" name="slug" class="form-control" value="{{$store->slug}}">
+            <input type="text" id="slug" name="slug" class="form-control" value="{{$store->slug}}" disabled="disabled">
         </div>
 
         <div>

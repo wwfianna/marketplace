@@ -76,7 +76,7 @@
 
         <div class="form-group">
             <label for="slug">Slug</label>
-            <input type="text" id="slug" name="slug" class="form-control" value="{{$product->slug}}">
+            <input type="text" id="slug" name="slug" class="form-control" value="{{$product->slug}}" disabled="disabled">
         </div>
 
         <div>
@@ -88,7 +88,7 @@
     <div class="row">
         @foreach($product->images as $img)
             <div class="col-4 text-center">
-                <img src="{{asset('storage/'.$img->image)}}" alt="" class="img-fluid">
+                <img src="{{asset('storage/'.$img->image)}}" alt="" class="img-fluid img-thumbnail">
                 <form action="{{route('admin.images.destroy', ['image'=>$img->id])}}" method="post">
                     @csrf
                     @method('DELETE')

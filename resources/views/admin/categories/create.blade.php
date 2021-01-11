@@ -27,11 +27,6 @@
             @enderror
         </div>
 
-        <div class="form-group">
-            <label for="slug">Slug</label>
-            <input type="text" id="slug" name="slug" class="form-control" value="{{old('slug')}}">
-        </div>
-
         <div>
             <button type="submit" class="btn btn-lg btn-success">Criar categoria</button>
         </div>

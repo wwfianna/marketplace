@@ -30,11 +30,11 @@
 
         <div class="form-group">
             <label for="slug">Slug</label>
-            <input type="text" id="slug" name="slug" class="form-control" value="{{$category->slug}}">
+            <input type="text" id="slug" name="slug" class="form-control" value="{{$category->slug}}" disabled="disabled">
         </div>
 
         <div>
-            <button type="submit" class="btn btn-lg btn-success">Atualizar produto</button>
+            <button type="submit" class="btn btn-lg btn-success">Atualizar categoria</button>
         </div>
     </form>
 @endsection

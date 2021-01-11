@@ -15,7 +15,7 @@ class UserHasStoreMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->user()->count()) {
+        if (auth()->user()->count() + 1 == 1) {
             flash('Loja já cadastrada para este usuário')->warning();
             return redirect()->route('admin.stores.index');
         }
