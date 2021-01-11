@@ -7,9 +7,12 @@ use App\Http\Middleware\Authenticate;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use App\Traits\UploadTrait;
 
 class ProductController extends Controller
 {
+    use UploadTrait;
+
     private $product;
 
     public function __construct(Product $product)
@@ -60,9 +63,9 @@ class ProductController extends Controller
         $product->categories()->sync($data['categories']);
 
         if ($request->hasFile('image')) {
-            $images = $this->imgUpload($request, 'image');
+            $images = $this->imgUpload($request->file('image'), 'image');
 
-            $product->photos()->createMany($images);
+            $product->images()->createMany($images);
         }
 
         flash('Produto criado com sucesso')->success();
@@ -109,6 +112,12 @@ class ProductController extends Controller
         $product->update($data);
         $product->categories()->sync($data['categories']);
 
+        if ($request->hasFile('image')) {
+            $images = $this->imgUpload($request->file('image'), 'image');
+
+            $product->images()->createMany($images);
+        }
+
         flash('Produto atualizado com sucesso')->success();
         return redirect()->route('admin.products.index');
     }
@@ -126,18 +135,5 @@ class ProductController extends Controller
 
         flash('Produto removido com sucesso')->success();
         return redirect()->route('admin.products.index');
-    }
-
-    private function imgUpload(Request $request, $imageColumn)
-    {
-        $images = $request->file('image');
-
-        $uploadedImg = [];
-
-        foreach ($images as $img) {
-            $uploadedImg[] = [$imageColumn => $img->store('products', 'public')];
-        }
-
-        return $uploadedImg;
     }
 }

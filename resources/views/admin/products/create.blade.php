@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group">
-            <label for="categories">Categorias</label>
+            <label for="categories[]">Categorias</label>
             <select name="categories[]" id="categories[]" class="form-control" multiple>
                 @foreach($categories as $cat)
                     <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -60,8 +60,15 @@
 
         <div class="form-group">
             <label for="image[]">Imagens</label>
-            <input type="file" name="image[]" id="image[]" class="form-control" multiple>
+            <input type="file" name="image[]" id="image[]" class="form-control @error('image.*') is-invalid @enderror "
+                   multiple>
         </div>
+
+        @error('image.*')
+        <div id=" validationServer03Feedback" class="invalid-feedback">
+            {{$message}}
+        </div>
+        @enderror
 
         <div class="form-group">
             <label for="slug">Slug</label>

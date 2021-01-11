@@ -27,15 +27,17 @@ class StoreRequest extends FormRequest
             'name' => 'required',
             'description' => 'required|min:10',
             'phone' => 'required',
-            'mobile_phone' => 'required'
+            'mobile_phone' => 'required',
+            'logo' => 'image'
         ];
     }
 
     public function messages()
     {
         return [
-            'required'=> 'Este campo deve ser preenchido.',
-            'min' => 'Campo deve ter no mínimo :min caracteres.'
+            'required' => 'Este campo deve ser preenchido.',
+            'min' => 'Campo deve ter no mínimo :min caracteres.',
+            'image' => 'Arquivo não suportado.'
         ];
     }
 }
