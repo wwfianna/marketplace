@@ -43,30 +43,30 @@
             @endauth
         </ul>
 
-        @auth
-            <div class="me-2 my-lg-0">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="{{route('cart.index')}}" class="nav-link">
-                            @if(session()->has('cart'))
-                                <span class="badge bg-danger">{{count(session()->get('cart'))}}</span>
-                            @endif
-                                <i class="fa fa-shopping-cart"></i>
-                        </a>
-                    </li>
+        <div class="me-2 my-lg-0">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a href="{{route('cart.index')}}" class="nav-link">
+                        @if(session()->has('cart'))
+                            <span class="badge bg-danger">{{count(session()->get('cart'))}}</span>
+                        @endif
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                </li>
+                @auth
                     <li class="nav-item">
                         <span class="nav-link">{{auth()->user()->name}}</span>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"
-                           onclick="preventDefault(); document.querySelector('form.logout').submit(); ">Sair</a>
-                        <form action="{{route('logout')}}" class="logout" method="POST" style="display:none;">
+                           onclick="document.querySelector('form.logout').submit(); ">Sair</a>
+                        <form action="{{route('logout')}}" class="logout" method="POST"  style="display:none;">
                             @csrf
                         </form>
                     </li>
-                </ul>
-            </div>
-        @endauth
+                @endauth
+            </ul>
+        </div>
 
 
     </div>
