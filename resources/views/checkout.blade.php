@@ -21,18 +21,18 @@
                 </div>
                 <div class="row">
                     <label for="exp_dt_month">Expira em</label>
-                    <div class="col">
+                    <div class="col-3">
                         <div class="input-group col-md-2">
                             <span class="input-group-text" id="basic-addon1">Mês</span>
                             <input type="text" class="form-control" name="card_exp_month" id="card_exp_month"
-                                   aria-label="card_exp_month" aria-describedby="basic-addon1">
+                                   aria-label="card_exp_month" aria-describedby="basic-addon1" maxlength="2">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-3">
                         <div class="input-group col-md-2">
                             <span class="input-group-text" id="basic-addon2">Ano</span>
                             <input type="text" class="form-control" name="card_exp_year" id="card_exp_year"
-                                   aria-label="card_exp_month" aria-describedby="basic-addon2">
+                                   aria-label="card_exp_month" aria-describedby="basic-addon2" maxlength="4">
                         </div>
                     </div>
                 </div>
