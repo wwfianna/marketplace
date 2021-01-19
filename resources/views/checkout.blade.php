@@ -1,7 +1,7 @@
 @extends('layouts.front')
 
 @section('stylesheets')
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 @endsection
 @section('content')
 
@@ -95,7 +95,7 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
         const sessionId = '{{session()->get('pagseguro_session_code')}}';
@@ -155,17 +155,22 @@
             };
 
             $.ajax({
-                type: 'POST',
                 url: '{{route("checkout.proccess")}}',
                 data: data,
-                dataType: 'json',
+                type: 'post',
+                dataType: 'JSON',
                 success: function (res) {
                     console.log('success');
+                    console.log(res);
                     toastr.success(res.data.message, 'Pedido enviado!');
                     window.location.href = '{{route('checkout.thanks')}}?order=' + res.data.order;
                 },
                 error: function (err) {
-                    // console.log(err);
+                    console.log('error');
+                    console.log(err);
+                },
+                complete: function (res) {
+                    console.log('complete');
                 }
             });
         }

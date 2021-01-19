@@ -38,8 +38,6 @@ class CheckoutController extends Controller
             $creditCardPayment = new CreditCard($cartItems, $user, $dataPost, $reference);
             $result = $creditCardPayment->doPayment();
 
-            var_dump($result);
-
             $userOrder = [
                 'reference' => $reference,
                 'pagseguro_code' => $result->getCode(),

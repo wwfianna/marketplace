@@ -4,6 +4,8 @@
 namespace App\Payment\PagSeguro;
 
 
+use PagSeguro\Configuration\Configure;
+
 class CreditCard
 {
     private $items;
@@ -117,7 +119,7 @@ class CreditCard
         $creditCard->setMode('DEFAULT');
 
         $result = $creditCard->register(
-            \PagSeguro\Configuration\Configure::getAccountCredentials()
+            Configure::getAccountCredentials()
         );
 
         return $result;
