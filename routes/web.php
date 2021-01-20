@@ -33,6 +33,8 @@ Route::prefix('checkout')->name('checkout.')->group(function (){
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('my-orders', 'UserOrderController@index')->name('user.orders');
+
     Route::prefix('admin')->name('admin.')->namespace('Admin')->group(function () {
 
 //    Route::prefix('stores')->name('stores.')->group(function () {
@@ -50,7 +52,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('stores', 'StoreController');
         Route::resource('categories', 'CategoryController');
         Route::resource('images', 'ProductImageController');
+        Route::resource('orders', 'OrdersController');
 
+//        Route::get('orders/my', 'OrdersController@index')->name('orders.my');
 //        Route::post('images/remove', 'ProductImageController@removeImage')->name('img.remove');
 
 

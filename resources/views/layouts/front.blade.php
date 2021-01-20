@@ -37,28 +37,15 @@
                        href="{{route('category.index', ['slug' => $category->slug])}}">{{$category->name}}</a>
                 </li>
             @endforeach
-
-            @auth
-                <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.stores.index')}}">
-                        <span class="fst-italic" style="color: blueviolet">Lojas</span>
-                    </a>
-                </li>
-                <li class="nav-item @if(request()->is('admin/products*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.products.index')}}">
-                        <span class="fst-italic" style="color: blueviolet">Produtos</span>
-                    </a>
-                </li>
-                <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.categories.index')}}">
-                        <span class="fst-italic" style="color: blueviolet">Categorias</span>
-                    </a>
-                </li>
-            @endauth
         </ul>
 
         <div class="me-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
+                @auth()
+                    <li class="nav-item">
+                        <a href="{{route('user.orders')}}" class="nav-link @if(request()->is('my-orders')) active @endif">Meus pedidos</a>
+                    </li>
+                @endauth
                 <li class="nav-item">
                     <a href="{{route('cart.index')}}" class="nav-link">
                         @if(session()->has('cart'))
@@ -90,6 +77,9 @@
     @include('flash::message')
     @yield('content')
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
 @yield('scripts')
 </body>
 </html>

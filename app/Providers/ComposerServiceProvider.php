@@ -26,7 +26,7 @@ class ComposerServiceProvider extends ServiceProvider
 
 //      view()->share('categories', $categories);
 
-        view()->composer('*', 'App\Http\ViewComposers\CategoryViewComposer@compose');
+        view()->composer('layouts.front', 'App\Http\ViewComposers\CategoryViewComposer@compose');
 
     }
 }

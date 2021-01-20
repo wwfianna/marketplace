@@ -160,8 +160,6 @@
                 type: 'post',
                 dataType: 'JSON',
                 success: function (res) {
-                    console.log('success');
-                    console.log(res);
                     toastr.success(res.data.message, 'Pedido enviado!');
                     window.location.href = '{{route('checkout.thanks')}}?order=' + res.data.order;
                 },
