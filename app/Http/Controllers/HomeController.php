@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-use Illuminate\Http\Request;
+use App\Store;
+use Illuminate\View\View;
 
 class HomeController extends Controller
 {
@@ -17,12 +18,14 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return View
      */
     public function index()
     {
-        $products = $this->product->limit(9)->orderBy('id', 'DESC')->get();
-        return view('welcome', compact('products'));
+        $products = $this->product->limit(6)->orderBy('id', 'DESC')->get();
+        $stores = Store::limit(3)->orderBy('id', 'DESC')->get();
+
+        return view('welcome', compact('products', 'stores'));
     }
 
     public function single($slug)

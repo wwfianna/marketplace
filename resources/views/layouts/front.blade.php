@@ -27,19 +27,32 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item @if(request()->is('/')) active @endif">
-                <a class="nav-link" href="{{route('home')}}">Home<span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link @if(request()->is('/')) active @endif" href="{{route('home')}}">Home</a>
             </li>
+
+            @foreach($list_categories as $category)
+                <li class="nav-item">
+                    <a class="nav-link @if(request()->is('category/'.$category->slug)) active @endif"
+                       href="{{route('category.index', ['slug' => $category->slug])}}">{{$category->name}}</a>
+                </li>
+            @endforeach
+
             @auth
                 <li class="nav-item @if(request()->is('admin/stores*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.stores.index')}}">Lojas<span
-                            class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{route('admin.stores.index')}}">
+                        <span class="fst-italic" style="color: blueviolet">Lojas</span>
+                    </a>
                 </li>
                 <li class="nav-item @if(request()->is('admin/products*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.products.index')}}">Produtos</a>
+                    <a class="nav-link" href="{{route('admin.products.index')}}">
+                        <span class="fst-italic" style="color: blueviolet">Produtos</span>
+                    </a>
                 </li>
                 <li class="nav-item @if(request()->is('admin/categories*')) active @endif">
-                    <a class="nav-link" href="{{route('admin.categories.index')}}">Categorias</a>
+                    <a class="nav-link" href="{{route('admin.categories.index')}}">
+                        <span class="fst-italic" style="color: blueviolet">Categorias</span>
+                    </a>
                 </li>
             @endauth
         </ul>
@@ -61,7 +74,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"
                            onclick="document.querySelector('form.logout').submit(); ">Sair</a>
-                        <form action="{{route('logout')}}" class="logout" method="POST"  style="display:none;">
+                        <form action="{{route('logout')}}" class="logout" method="POST" style="display:none;">
                             @csrf
                         </form>
                     </li>

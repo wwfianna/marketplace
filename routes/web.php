@@ -11,10 +11,11 @@
 |
 */
 
-use App\User;
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/product/{slug}', 'HomeController@single')->name('product.single');
+//Route::resource('category', CategoryController::class);
+Route::get('/category/{slug}', 'CategoryListController@index')->name('category.index');
+Route::get('/store/{slug}', 'StoreController@index')->name('store.single');
 
 Route::prefix('cart')->name('cart.')->group(function () {
     Route::get('/', 'CartController@index')->name('index');
@@ -28,6 +29,7 @@ Route::prefix('checkout')->name('checkout.')->group(function (){
     Route::post('/proccess', 'CheckoutController@proccess')->name('proccess');
     Route::get('/thanks', 'CheckoutController@thanks')->name('thanks');
 });
+
 
 Route::group(['middleware' => 'auth'], function () {
 

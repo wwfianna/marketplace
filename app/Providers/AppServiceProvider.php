@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use PagSeguro\Library;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,8 +24,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \PagSeguro\Library::initialize();
-        \PagSeguro\Library::cmsVersion()->setName("marketplace")->setRelease("1.0.0");
-        \PagSeguro\Library::moduleVersion()->setName("marketplace")->setRelease("1.0.0");
+        Library::initialize();
+        Library::cmsVersion()->setName("marketplace")->setRelease("1.0.0");
+        Library::moduleVersion()->setName("marketplace")->setRelease("1.0.0");
     }
 }
