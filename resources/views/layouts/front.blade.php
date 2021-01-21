@@ -5,10 +5,8 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Marketplace L6</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <title>Marketplace L7</title>
+    <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <style>
         .front.row {
             margin-bottom: 40px;
@@ -18,7 +16,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{route('home')}}">Marketplace L6</a>
+    <a class="navbar-brand" href="{{route('home')}}">Marketplace L7</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -37,13 +35,15 @@
                        href="{{route('category.index', ['slug' => $category->slug])}}">{{$category->name}}</a>
                 </li>
             @endforeach
+
         </ul>
 
         <div class="me-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
                 @auth()
                     <li class="nav-item">
-                        <a href="{{route('user.orders')}}" class="nav-link @if(request()->is('my-orders')) active @endif">Meus pedidos</a>
+                        <a href="{{route('user.orders')}}"
+                           class="nav-link @if(request()->is('my-orders')) active @endif">Meus pedidos</a>
                     </li>
                 @endauth
                 <li class="nav-item">
@@ -77,9 +77,7 @@
     @include('flash::message')
     @yield('content')
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+<script src="{{asset('js/app.js')}}"></script>
 @yield('scripts')
 </body>
 </html>
