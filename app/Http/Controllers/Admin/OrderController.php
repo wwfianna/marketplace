@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\UserOrder;
 use Illuminate\Http\Request;
 
-class OrdersController extends Controller
+class OrderController extends Controller
 {
     private $order;
 

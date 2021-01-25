@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Marketplace L7</title>
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 40px;">
@@ -36,13 +37,23 @@
                            href="{{route('admin.categories.index')}}">Categorias</a>
                     </li>
                 </ul>
-            </div>
-            <span class="text-warning">{{auth()->user()->name}}</span>
-            <div class="me-2">
-                <a class="nav-link" href="#" onclick="document.querySelector('form.logout').submit()">Sair</a>
-                <form action="{{route('logout')}}" class="logout" method="post" style="display: none">
-                    @csrf
-                </form>
+                <ul class="navbar-nav me-2">
+                    <li class="nav-item">
+                        <a href="{{route('admin.notifications.index')}}" class="nav-link">
+                            <span class="badge bg-danger">{{auth()->user()->unreadNotifications->count()}}</span>
+                            <i class="fa fa-bell"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">{{auth()->user()->name}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="document.querySelector('form.logout').submit()">Sair</a>
+                        <form action="{{route('logout')}}" class="logout" method="post" style="display: none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
             </div>
 
         @endauth

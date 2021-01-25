@@ -48,13 +48,17 @@ Route::group(['middleware' => 'auth'], function () {
 //
 //    });
 
+        Route::get('notifications', 'NotificationController@notifications')->name('notifications.index');
+        Route::get('notifications/read-all', 'NotificationController@markAsReadAll')->name('notifications.read.all');
+        Route::get('notifications/read/{notification}', 'NotificationController@markAsRead')->name('notifications.read');
+
         Route::resource('products', 'ProductController');
         Route::resource('stores', 'StoreController');
         Route::resource('categories', 'CategoryController');
         Route::resource('images', 'ProductImageController');
-        Route::resource('orders', 'OrdersController');
+        Route::resource('orders', 'OrderController');
 
-//        Route::get('orders/my', 'OrdersController@index')->name('orders.my');
+//        Route::get('orders/my', 'OrderController@index')->name('orders.my');
 //        Route::post('images/remove', 'ProductImageController@removeImage')->name('img.remove');
 
 
@@ -69,4 +73,7 @@ Auth::routes();
 Route::get('/model', function () {
     $product = \App\Product::find(40);
     dd($product->categories()->sync([2]));
+});
+
+Route::get('not', function () {
 });
